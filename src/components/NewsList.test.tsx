@@ -42,27 +42,29 @@ const initialState = {
 
 const store = mockStore(initialState);
 
-test('renders news articles', () => {
-  render(
-    <Provider store={store}>
-      <NewsList />
-    </Provider>
-  );
+describe('NewsList', () => {
+  test('renders news articles', () => {
+    render(
+      <Provider store={store}>
+        <NewsList />
+      </Provider>
+    );
 
-  expect(screen.getByText('Test Article 1')).toBeInTheDocument();
-  expect(screen.getByText('Description 1')).toBeInTheDocument();
-  expect(screen.getByText('Test Article 2')).toBeInTheDocument();
-  expect(screen.getByText('Description 2')).toBeInTheDocument();
-});
+    expect(screen.getByText('Test Article 1')).toBeInTheDocument();
+    expect(screen.getByText('Description 1')).toBeInTheDocument();
+    expect(screen.getByText('Test Article 2')).toBeInTheDocument();
+    expect(screen.getByText('Description 2')).toBeInTheDocument();
+  });
 
-test('dispatches fetchNewsRequest on mount', () => {
-  store.dispatch = jest.fn();
+  test('dispatches fetchNewsRequest on mount', () => {
+    store.dispatch = jest.fn();
 
-  render(
-    <Provider store={store}>
-      <NewsList />
-    </Provider>
-  );
+    render(
+      <Provider store={store}>
+        <NewsList />
+      </Provider>
+    );
 
-  expect(store.dispatch).toHaveBeenCalledWith(fetchNewsRequest());
+    expect(store.dispatch).toHaveBeenCalledWith(fetchNewsRequest());
+  });
 });
